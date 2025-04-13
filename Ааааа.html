@@ -1,0 +1,129 @@
+// Управление placeholder'ами
+const placeholderManager = (ev) => {
+    const inputField = ev.target;
+    const placeholderValue = inputField.dataset.placeholder;
+
+    inputField.value = ev.type === 'focus' && inputField.value === placeholderValue ? '' : inputField.value;
+    inputField.style.color = inputField.value === placeholderValue ? 'rgb(121, 21, 21)' : '#000';
+
+    if (ev.type === 'blur' && inputField.value === '') {
+        inputField.value = placeholderValue;
+        inputField.style.color = 'rgb(121, 21, 21)';
+    }
+};
+
+
+// Управление видимостью формы регистрации
+const toggleFormVisibility = () => {
+    const registrationForm = document.getElementById('user-registration');
+    const registerBtn = document.getElementById('registerBtn');
+
+    if (!registrationForm) {
+        buildRegistrationForm();
+    } else {
+        registrationForm.style.display = registrationForm.style.display === 'none' ? 'flex' : 'none'; // Используем flex для корректного отображения
+    }
+
+    registerBtn.style.display = registerBtn.style.display === 'none' ? 'block' : 'none';
+
+};
+
+// Валидация имени и фамилии
+const isNameValid = (name) => /^[A-Za-zА-Яа-яЁё]+$/.test(name.trim());
+
+// Валидация email
+const isEmailValid = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+// Валидация пароля (более строгая проверка)
+const isPasswordValid = (password) => {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\|,.<>/?]).{8,}$/.test(password);
+};
+
+
+
+const submitRegistrationData = () => {
+    const firstName = document.getElementById('firstNameInput').value.trim();
+    const lastName = document.getElementById('lastNameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const password = document.getElementById('passwordInput').value;
+    const confirmPassword = document.getElementById('confirmPasswordInput').value;
+    const errorMessageContainer = document.getElementById('error-message');
+
+    // Проверка валидности данных
+    if (!isNameValid(firstName)) {
+        errorMessageContainer.textContent = "Введите корректное имя";
+        return;
+    }
+
+    if (!isNameValid(lastName)) {
+        errorMessageContainer.textContent = "Введите корректную фамилию";
+        return;
+    }
+
+    if (!isEmailValid(email)) {
+        errorMessageContainer.textContent = "Введите корректный email";
+        return;
+    }
+
+    if (!isPasswordValid(password)) {
+        errorMessageContainer.textContent = "Пароль должен содержать минимум 8 символов, заглавные и строчные буквы, цифры и спец.символы!";
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        errorMessageContainer.textContent = 'Пароли не совпадают!';
+        return;
+    }
+
+    // Если все проверки пройдены, очищаем сообщение об ошибке
+    errorMessageContainer.textContent = "";
+
+    // ... отправка данных на сервер
+};
+
+
+
+
+
+// ... (остальной код buildRegistrationForm и инициализация)
+// ... (предыдущий код: placeholderManager, toggleFormVisibility, валидация, submitRegistrationData)
+
+// Создание формы регистрации
+const buildRegistrationForm = () => {
+    const formStructure = `
+    <div id="user-registration" style="display: none;"> <div class="form-header">Регистрация</div>
+        <img id="closeFormBtn" src="../Images/close2.png" alt="Закрыть">
+        <div class="form-body">
+            <div class="form-title"><span>Создайте свой аккаунт</span></div>
+            <div class="input-group">
+                <input type="text" class="form-input" id="firstNameInput" data-placeholder="Имя">
+                <input type="text" class="form-input" id="lastNameInput" data-placeholder="Фамилия">
+                <input type="email" class="form-input" id="emailInput" data-placeholder="Email">
+                <input type="password" class="form-input" id="passwordInput" data-placeholder="Пароль">
+                <input type="password" class="form-input" id="confirmPasswordInput" data-placeholder="Подтвердите пароль">
+                <input type="button" id="submitRegistration" value="Зарегистрироваться">
+            </div>
+            <div class="login-link">
+                <span>Уже зарегистрированы?</span><a href="#" id="signInLink">Войти</a>
+            </div>
+            <div id="error-message"></div>
+        </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', formStructure);
+
+    document.querySelectorAll('.form-input').forEach(inputElement => {
+        inputElement.addEventListener('focus', placeholderManager);
+        inputElement.addEventListener('blur', placeholderManager);
+    });
+
+    document.getElementById('closeFormBtn').addEventListener('click', toggleFormVisibility);
+    document.getElementById('submitRegistration').addEventListener('click', submitRegistrationData);
+};
+
+// Инициализация
+const registerButton = document.getElementById('registerBtn');
+
+if (registerButton) {
+    registerButton.addEventListener('click', toggleFormVisibility);
+}
