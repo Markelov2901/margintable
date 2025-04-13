@@ -1,0 +1,80 @@
+#registrate1{
+        background-color: #EDF2F7;
+        border: 2px solid #8FA2CA;
+        height: 25px;
+        text-align: center;
+  
+  }
+  #form{background-color: #E4E8F4;
+        border: 2px solid #48523D;
+        width: 400px;
+        height: 600px; 
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -200px;
+        margin-top: -300px;
+        font-family: sans-serif;
+        padding: 4px;
+        -webkit-box-shadow: 4px 4px 10px -2px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 4px 4px 10px -2px rgba(34, 60, 80, 0.2);
+        box-shadow: 4px 4px 10px -2px rgba(34, 60, 80, 0.2);
+       }
+  #lable{background-color: #8FA2CA;
+         width: 135px;
+         border-top-left-radius: 4px;
+         border-top-right-radius: 4px;
+         font-size: 10pt;
+         text-align: center;
+         height: 19px;
+         float: left;
+         padding-top: 4px;
+         color: #48523D;
+         z-index: 10000000000000000;
+        }
+  #clos{margin-left: 243px;
+         width: 19px; 
+        }
+  #main{
+        border: 2px solid #8FA2CA;
+        width: auto;
+        height: 573px;
+        background-color: #EDF2F7;
+        text-align: center;
+       }
+  #text{background-color: #EDF2F7;
+        width: 66%;
+        height: 20px;
+        position: relative;
+        left: 17%;
+        font-size: 26pt;
+        text-align: center;
+        padding-top: 30px;
+        margin-bottom: 80px;
+        color: #48523D;
+       }
+  .inputs{
+          background-color: #E4E8F4;
+          position: relative;
+          display: block;
+          left: 29%;
+          margin-top: 30px;
+          border: 0px;
+          border-bottom: 1px solid black;
+         }
+  #registrate2{margin-top: 30px;
+              width: 200px;
+              height: 40px;
+              background-color: #B5C6B8;
+              margin-bottom: 15px;
+              color: #48523D;
+             }
+  #alt{font-size: 12pt;
+       color: black;
+       text-decoration: none;
+       }
+  #err{
+        margin-top:40px;
+        color: rgb(121, 21, 21);
+        font-size: 10pt;
+      }
