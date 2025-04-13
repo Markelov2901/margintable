@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Форма регистации</title>
+    <style>
+    </style>
+    <link rel="stylesheet" href="../css/style_form.css">
+</head>
+<body>
+  <input type="button" value="Зарегестрироваться" id="registerBtn">
+  <script>
 // Управление placeholder'ами
 const placeholderManager = (ev) => {
     const inputField = ev.target;
@@ -78,15 +89,7 @@ const submitRegistrationData = () => {
     // Если все проверки пройдены, очищаем сообщение об ошибке
     errorMessageContainer.textContent = "";
 
-    // ... отправка данных на сервер
 };
-
-
-
-
-
-// ... (остальной код buildRegistrationForm и инициализация)
-// ... (предыдущий код: placeholderManager, toggleFormVisibility, валидация, submitRegistrationData)
 
 // Создание формы регистрации
 const buildRegistrationForm = () => {
@@ -127,3 +130,6 @@ const registerButton = document.getElementById('registerBtn');
 if (registerButton) {
     registerButton.addEventListener('click', toggleFormVisibility);
 }
+</script>
+</body>
+</html>
